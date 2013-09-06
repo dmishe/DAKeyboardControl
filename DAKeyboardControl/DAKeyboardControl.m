@@ -10,28 +10,6 @@
 #import <objc/runtime.h>
 
 
-static inline UIViewAnimationOptions AnimationOptionsForCurve(UIViewAnimationCurve curve)
-{
-	switch (curve) {
-		case UIViewAnimationCurveEaseInOut:
-			return UIViewAnimationOptionCurveEaseInOut;
-			break;
-		case UIViewAnimationCurveEaseIn:
-			return UIViewAnimationOptionCurveEaseIn;
-			break;
-		case UIViewAnimationCurveEaseOut:
-			return UIViewAnimationOptionCurveEaseOut;
-			break;
-		case UIViewAnimationCurveLinear:
-			return UIViewAnimationOptionCurveLinear;
-			break;
-			
-		default:
-			return UIViewAnimationOptionCurveEaseInOut;
-			break;
-	}
-}
-
 static char UIViewKeyboardTriggerOffset;
 static char UIViewKeyboardDidMoveBlock;
 static char UIViewKeyboardActiveInput;
@@ -241,7 +219,7 @@ static char UIViewIsPanning;
     
     [UIView animateWithDuration:keyboardTransitionDuration
                           delay:0.0f
-                        options:AnimationOptionsForCurve(keyboardTransitionAnimationCurve) | UIViewAnimationOptionBeginFromCurrentState
+                        options(keyboardTransitionAnimationCurve << 16) | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          if (self.keyboardDidMoveBlock && !CGRectIsNull(keyboardEndFrameView))
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
@@ -289,7 +267,7 @@ static char UIViewIsPanning;
     
     [UIView animateWithDuration:keyboardTransitionDuration
                           delay:0.0f
-                        options:AnimationOptionsForCurve(keyboardTransitionAnimationCurve) | UIViewAnimationOptionBeginFromCurrentState
+                        options:(keyboardTransitionAnimationCurve << 16) | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          if (self.keyboardDidMoveBlock && !CGRectIsNull(keyboardEndFrameView))
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
@@ -317,7 +295,7 @@ static char UIViewIsPanning;
     
     [UIView animateWithDuration:keyboardTransitionDuration
                           delay:0.0f
-                        options:AnimationOptionsForCurve(keyboardTransitionAnimationCurve) | UIViewAnimationOptionBeginFromCurrentState
+                        options:(keyboardTransitionAnimationCurve << 16) | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          if (self.keyboardDidMoveBlock && !CGRectIsNull(keyboardEndFrameView))
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
