@@ -219,7 +219,7 @@ static char UIViewIsPanning;
     
     [UIView animateWithDuration:keyboardTransitionDuration
                           delay:0.0f
-                        options(keyboardTransitionAnimationCurve << 16) | UIViewAnimationOptionBeginFromCurrentState
+                        options:(keyboardTransitionAnimationCurve << 16) | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          if (self.keyboardDidMoveBlock && !CGRectIsNull(keyboardEndFrameView))
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
